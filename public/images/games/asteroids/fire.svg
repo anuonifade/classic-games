@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path fill="none" stroke="orange" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M24 44c-8.84 0-16-7.16-16-16c0-4.42 1.79-8.42 4.69-11.31C16.58 12.79 24 8 24 8s7.42 4.79 11.31 8.69C38.21 19.58 40 23.58 40 28c0 8.84-7.16 16-16 16Z"/>
+</svg>
