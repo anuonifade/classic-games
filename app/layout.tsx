@@ -8,8 +8,16 @@ import { SiteFooter } from "./site-footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Classic Games Archive",
-  description: "Explore and play your favorite retro games",
+  title: "Classic Games",
+  description: "A collection of classic arcade games reimagined for the web",
+  icons: {
+    icon: [
+      {
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      }
+    ]
+  }
 }
 
 export default function RootLayout({
@@ -20,6 +28,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
+        <head>
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        </head>
         <body className={`${inter.className} min-h-screen bg-background antialiased`}>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
