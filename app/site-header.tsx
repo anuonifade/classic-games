@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "../components/ui/button"
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs"
 
@@ -12,6 +13,13 @@ export function SiteHeader() {
       <div className="flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
+            <Image
+              src="/favicon.svg"
+              alt="Classic Games Logo"
+              width={24}
+              height={24}
+              className="h-6 w-6"
+            />
             <span className="font-bold text-foreground">Classic Games</span>
           </Link>
         </div>
