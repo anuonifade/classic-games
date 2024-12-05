@@ -287,7 +287,7 @@ interface Bullet {
   lifespan: number
 }
 
-export default function AsteroidsGame() {
+function AsteroidsGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const shipRef = useRef<Ship | null>(null)
@@ -657,3 +657,5 @@ export default function AsteroidsGame() {
     </div>
   )
 }
+
+module.exports = AsteroidsGame;

@@ -424,7 +424,7 @@ function ArkanoidGame() {
   }, [gameState, score, highScore, level, lives])
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-black">
+    <div ref={containerRef} className="w-full h-full flex flex-col items-center justify-center bg-black text-white relative">
       <canvas
         ref={canvasRef}
         className="absolute top-0 left-0 w-full h-full"
@@ -447,4 +447,4 @@ function ArkanoidGame() {
   )
 }
 
-export default ArkanoidGame
+module.exports = ArkanoidGame;

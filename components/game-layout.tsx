@@ -8,8 +8,8 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 
 interface GameLayoutProps {
-  children: React.ReactNode
   game: Game
+  children?: React.ReactNode
 }
 
 function getSimilarGames(currentGame: Game): Game[] {
@@ -20,7 +20,7 @@ function getSimilarGames(currentGame: Game): Game[] {
   return sameLetterGames.slice(0, 5)
 }
 
-export default function GameLayout({ children, game }: GameLayoutProps) {
+const GameLayout = ({ children, game }: GameLayoutProps) => {
   const [searchQuery, setSearchQuery] = useState("")
   const similarGames = getSimilarGames(game)
   const pathname = usePathname()
@@ -81,7 +81,7 @@ export default function GameLayout({ children, game }: GameLayoutProps) {
               {similarGames.map((similarGame) => (
                 <Link
                   key={similarGame.name}
-                  href={`/games/${similarGame.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  href={`/games/${similarGame.slug}`}
                   className="text-sm hover:text-primary transition-colors py-1 hover:bg-accent px-2"
                 >
                   {similarGame.name}
@@ -109,10 +109,21 @@ export default function GameLayout({ children, game }: GameLayoutProps) {
             <p className="mt-2">{game.description}</p>
           </div>
           <div className="flex-1 overflow-hidden">
-            {children}
+            {children || (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center p-4">
+                  <h2 className="text-xl font-semibold mb-2">Game Under Development</h2>
+                  <p className="text-muted-foreground">
+                    This classic game is currently being implemented. Check back soon!
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+export { GameLayout }
