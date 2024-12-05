@@ -4,7 +4,6 @@ import { notFound } from "next/navigation"
 import { GameLayout } from "@/components/game-layout"
 import { gamesByLetter } from "@/lib/games"
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 
 interface GamePageProps {
   params: {
@@ -21,56 +20,19 @@ const LoadingFallback = () => (
   </div>
 )
 
-function getGameComponent(slug: string) {
-  switch (slug) {
-    case 'asteroids':
-      const AsteroidsGame = dynamic(
-        () => import('@/components/games/asteroids').then((mod) => {
-          if (!mod.default) {
-            console.error('No default export found in asteroids.tsx')
-            return () => <div>Error loading game</div>
-          }
-          return mod.default
-        }),
-        {
-          loading: LoadingFallback,
-          ssr: false,
-        }
-      )
-      return AsteroidsGame
-    case 'arkanoid':
-      const ArkanoidGame = dynamic(
-        () => import('@/components/games/arkanoid').then((mod) => {
-          if (!mod.default) {
-            console.error('No default export found in arkanoid.tsx')
-            return () => <div>Error loading game</div>
-          }
-          return mod.default
-        }),
-        {
-          loading: LoadingFallback,
-          ssr: false,
-        }
-      )
-      return ArkanoidGame
-    case 'joust':
-      const JoustGame = dynamic(
-        () => import('@/components/games/joust').then((mod) => {
-          if (!mod.default) {
-            console.error('No default export found in joust.tsx')
-            return () => <div>Error loading game</div>
-          }
-          return mod.default
-        }),
-        {
-          loading: LoadingFallback,
-          ssr: false,
-        }
-      )
-      return JoustGame
-    default:
-      return null
-  }
+const GameComponents = {
+  'asteroids': dynamic(() => import('@/components/games/asteroids'), {
+    loading: LoadingFallback,
+    ssr: false
+  }),
+  'arkanoid': dynamic(() => import('@/components/games/arkanoid'), {
+    loading: LoadingFallback,
+    ssr: false
+  }),
+  'joust': dynamic(() => import('@/components/games/joust'), {
+    loading: LoadingFallback,
+    ssr: false
+  })
 }
 
 export default function GamePage({ params }: GamePageProps) {
@@ -83,7 +45,7 @@ export default function GamePage({ params }: GamePageProps) {
     notFound()
   }
 
-  const GameComponent = getGameComponent(params.slug)
+  const GameComponent = GameComponents[params.slug as keyof typeof GameComponents]
 
   if (!GameComponent) {
     return (
@@ -100,9 +62,7 @@ export default function GamePage({ params }: GamePageProps) {
 
   return (
     <GameLayout game={game}>
-      <Suspense fallback={<LoadingFallback />}>
-        <GameComponent />
-      </Suspense>
+      <GameComponent />
     </GameLayout>
   )
 }

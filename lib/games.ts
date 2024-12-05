@@ -1,10 +1,12 @@
+export interface Game {
+  name: string
+  description: string
+  year: string
+  slug: string
+}
+
 export const gamesByLetter: {
-  [key: string]: Array<{ 
-    name: string; 
-    description: string; 
-    year: string;
-    slug: string 
-  }>
+  [key: string]: Game[]
 } = {
   A: [
     { 
@@ -657,110 +659,110 @@ export const gamesByLetter: {
     }
   ],
   N: [
-    { name: "NARC", description: "Crime-fighting action game", year: "1988" },
-    { name: "Nemesis", description: "Space shooting adventure", year: "1985" },
-    { name: "New Zealand Story", description: "Cute platformer with kiwi bird", year: "1988" },
-    { name: "Ninja Gaiden", description: "Ninja action platformer", year: "1988" },
-    { name: "Nibbler", description: "Snake maze game", year: "1982" },
-    { name: "Nightmare in the Dark", description: "Platform game with horror theme", year: "2000" },
-    { name: "Ninja Spirit", description: "Ninja action platformer", year: "1988" }
+    { name: "NARC", description: "Crime-fighting action game", year: "1988", slug: "narc" },
+    { name: "Nemesis", description: "Space shooting adventure", year: "1985", slug: "nemesis" },
+    { name: "New Zealand Story", description: "Cute platformer with kiwi bird", year: "1988", slug: "new-zealand-story" },
+    { name: "Ninja Gaiden", description: "Ninja action platformer", year: "1988", slug: "ninja-gaiden" },
+    { name: "Nibbler", description: "Snake maze game", year: "1982", slug: "nibbler" },
+    { name: "Nightmare in the Dark", description: "Platform game with horror theme", year: "2000", slug: "nightmare-in-the-dark" },
+    { name: "Ninja Spirit", description: "Ninja action platformer", year: "1988", slug: "ninja-spirit" }
   ],
   O: [
-    { name: "Out Run", description: "Ferrari racing game", year: "1986" },
-    { name: "Operation Wolf", description: "Light gun rail shooter", year: "1987" },
-    { name: "Omega Race", description: "Space combat game", year: "1981" },
-    { name: "Oriental Legend", description: "Beat 'em up with Asian mythology", year: "1997" },
-    { name: "Out Zone", description: "Side-scrolling shooter with unique controls", year: "1990" },
-    { name: "Operation Thunderbolt", description: "Light gun shooter with military theme", year: "1988" }
+    { name: "Out Run", description: "Ferrari racing game", year: "1986", slug: "out-run" },
+    { name: "Operation Wolf", description: "Light gun rail shooter", year: "1987", slug: "operation-wolf" },
+    { name: "Omega Race", description: "Space combat game", year: "1981", slug: "omega-race" },
+    { name: "Oriental Legend", description: "Beat 'em up with Asian mythology", year: "1997", slug: "oriental-legend" },
+    { name: "Out Zone", description: "Side-scrolling shooter with unique controls", year: "1990", slug: "out-zone" },
+    { name: "Operation Thunderbolt", description: "Light gun shooter with military theme", year: "1988", slug: "operation-thunderbolt" }
   ],
   P: [
-    { name: "Pac-Man", description: "Iconic maze chase game", year: "1980" },
-    { name: "Phoenix", description: "Space shooter with bird-like aliens", year: "1980" },
-    { name: "Pole Position", description: "Formula 1 racing game", year: "1982" },
-    { name: "Paperboy", description: "Deliver newspapers while avoiding obstacles", year: "1985" },
-    { name: "Pengo", description: "Push ice blocks to defeat enemies", year: "1982" },
-    { name: "Pooyan", description: "Defend against wolves using arrows", year: "1982" },
-    { name: "Punch-Out!!", description: "Boxing game with colorful characters", year: "1984" },
-    { name: "Pitfall!", description: "Jungle adventure platformer", year: "1982" }
+    { name: "Pac-Man", description: "Iconic maze chase game", year: "1980", slug: "pac-man" },
+    { name: "Phoenix", description: "Space shooter with bird-like aliens", year: "1980", slug: "phoenix" },
+    { name: "Pole Position", description: "Formula 1 racing game", year: "1982", slug: "pole-position" },
+    { name: "Paperboy", description: "Deliver newspapers while avoiding obstacles", year: "1985", slug: "paperboy" },
+    { name: "Pengo", description: "Push ice blocks to defeat enemies", year: "1982", slug: "pengo" },
+    { name: "Pooyan", description: "Defend against wolves using arrows", year: "1982", slug: "pooyan" },
+    { name: "Punch-Out!!", description: "Boxing game with colorful characters", year: "1984", slug: "punch-out" },
+    { name: "Pitfall!", description: "Jungle adventure platformer", year: "1982", slug: "pitfall" }
   ],
   Q: [
-    { name: "Q*bert", description: "Isometric puzzle platformer", year: "1982" },
-    { name: "Qix", description: "Abstract puzzle drawing game", year: "1981" },
-    { name: "Quantum", description: "Vector graphics puzzle game", year: "1982" },
-    { name: "Quartet", description: "Side-scrolling shooter with unique controls", year: "1986" },
-    { name: "Quiz & Dragons", description: "Trivia game with RPG elements", year: "1992" }
+    { name: "Q*bert", description: "Isometric puzzle platformer", year: "1982", slug: "qbert" },
+    { name: "Qix", description: "Abstract puzzle drawing game", year: "1981", slug: "qix" },
+    { name: "Quantum", description: "Vector graphics puzzle game", year: "1982", slug: "quantum" },
+    { name: "Quartet", description: "Side-scrolling shooter with unique controls", year: "1986", slug: "quartet" },
+    { name: "Quiz & Dragons", description: "Trivia game with RPG elements", year: "1992", slug: "quiz-dragons" }
   ],
   R: [
-    { name: "Rally-X", description: "Maze driving game", year: "1980" },
-    { name: "Rampage", description: "City destruction as monsters", year: "1986" },
-    { name: "Rastan", description: "Sword-wielding fantasy action", year: "1987" },
-    { name: "Rolling Thunder", description: "Secret agent action platformer", year: "1986" },
-    { name: "Rush'n Attack", description: "Military action platformer", year: "1985" },
-    { name: "Road Runner", description: "Platform game with Looney Tunes characters", year: "1985" },
-    { name: "Renegade", description: "Side-scrolling beat 'em up", year: "1986" }
+    { name: "Rally-X", description: "Maze driving game", year: "1980", slug: "rally-x" },
+    { name: "Rampage", description: "City destruction as monsters", year: "1986", slug: "rampage" },
+    { name: "Rastan", description: "Sword-wielding fantasy action", year: "1987", slug: "rastan" },
+    { name: "Rolling Thunder", description: "Secret agent action platformer", year: "1986", slug: "rolling-thunder" },
+    { name: "Rush'n Attack", description: "Military action platformer", year: "1985", slug: "rushn-attack" },
+    { name: "Road Runner", description: "Platform game with Looney Tunes characters", year: "1985", slug: "road-runner" },
+    { name: "Renegade", description: "Side-scrolling beat 'em up", year: "1986", slug: "renegade" }
   ],
   S: [
-    { name: "Space Invaders", description: "Shoot waves of descending aliens", year: "1978" },
-    { name: "Street Fighter", description: "One-on-one fighting game", year: "1987" },
-    { name: "Spy Hunter", description: "Vehicular combat game", year: "1983" },
-    { name: "Star Wars", description: "Vector graphics space combat", year: "1983" },
-    { name: "Scramble", description: "Side-scrolling shooter with fuel management", year: "1981" },
-    { name: "Sinistar", description: "Space shooter with menacing boss", year: "1982" },
-    { name: "Super Sprint", description: "Overhead view racing game", year: "1986" },
-    { name: "Satan's Hollow", description: "Defend against waves of demons", year: "1981" }
+    { name: "Space Invaders", description: "Shoot waves of descending aliens", year: "1978", slug: "space-invaders" },
+    { name: "Street Fighter", description: "One-on-one fighting game", year: "1987", slug: "street-fighter" },
+    { name: "Spy Hunter", description: "Vehicular combat game", year: "1983", slug: "spy-hunter" },
+    { name: "Star Wars", description: "Vector graphics space combat", year: "1983", slug: "star-wars" },
+    { name: "Scramble", description: "Side-scrolling shooter with fuel management", year: "1981", slug: "scramble" },
+    { name: "Sinistar", description: "Space shooter with menacing boss", year: "1982", slug: "sinistar" },
+    { name: "Super Sprint", description: "Overhead view racing game", year: "1986", slug: "super-sprint" },
+    { name: "Satan's Hollow", description: "Defend against waves of demons", year: "1981", slug: "satans-hollow" }
   ],
   T: [
-    { name: "Tempest", description: "Vector graphics shooter", year: "1981" },
-    { name: "Time Pilot", description: "Time-traveling air combat", year: "1982" },
-    { name: "Track & Field", description: "Olympic sports competition", year: "1983" },
-    { name: "Tron", description: "Movie-based light cycles game", year: "1982" },
-    { name: "Tutankham", description: "Egyptian themed maze shooter", year: "1982" },
-    { name: "Thunder Blade", description: "3D shooter with helicopter combat", year: "1987" },
-    { name: "Tiger Road", description: "Side-scrolling action game with ninja theme", year: "1987" }
+    { name: "Tempest", description: "Vector graphics shooter", year: "1981", slug: "tempest" },
+    { name: "Time Pilot", description: "Time-traveling air combat", year: "1982", slug: "time-pilot" },
+    { name: "Track & Field", description: "Olympic sports competition", year: "1983", slug: "track-field" },
+    { name: "Tron", description: "Movie-based light cycles game", year: "1982", slug: "tron" },
+    { name: "Tutankham", description: "Egyptian themed maze shooter", year: "1982", slug: "tutankham" },
+    { name: "Thunder Blade", description: "3D shooter with helicopter combat", year: "1987", slug: "thunder-blade" },
+    { name: "Tiger Road", description: "Side-scrolling action game with ninja theme", year: "1987", slug: "tiger-road" }
   ],
   U: [
-    { name: "Ultima", description: "Fantasy role-playing series", year: "1981" },
-    { name: "UN Squadron", description: "Military aircraft shooter", year: "1989" },
-    { name: "Up 'n Down", description: "Vertical jumping racing game", year: "1983" },
-    { name: "U.N. Squadron", description: "Side-scrolling shooter with military theme", year: "1989" },
-    { name: "Uridium", description: "Side-scrolling shooter with unique controls", year: "1986" }
+    { name: "Ultima", description: "Fantasy role-playing series", year: "1981", slug: "ultima" },
+    { name: "UN Squadron", description: "Military aircraft shooter", year: "1989", slug: "un-squadron" },
+    { name: "Up 'n Down", description: "Vertical jumping racing game", year: "1983", slug: "up-n-down" },
+    { name: "U.N. Squadron", description: "Side-scrolling shooter with military theme", year: "1989", slug: "un-squadron" },
+    { name: "Uridium", description: "Side-scrolling shooter with unique controls", year: "1986", slug: "uridium" }
   ],
   V: [
-    { name: "Vanguard", description: "Multi-directional space shooter", year: "1981" },
-    { name: "Venture", description: "Dungeon exploration game", year: "1981" },
-    { name: "Victory Road", description: "Run and gun action", year: "1986" },
-    { name: "Vigilante", description: "Street fighting action", year: "1988" },
-    { name: "VS. Tennis", description: "Tennis sports game", year: "1984" },
-    { name: "Vindicators", description: "Tank combat action game", year: "1988" },
-    { name: "Volfied", description: "Puzzle game with unique mechanics", year: "1989" }
+    { name: "Vanguard", description: "Multi-directional space shooter", year: "1981", slug: "vanguard" },
+    { name: "Venture", description: "Dungeon exploration game", year: "1981", slug: "venture" },
+    { name: "Victory Road", description: "Run and gun action", year: "1986", slug: "victory-road" },
+    { name: "Vigilante", description: "Street fighting action", year: "1988", slug: "vigilante" },
+    { name: "VS. Tennis", description: "Tennis sports game", year: "1984", slug: "vs-tennis" },
+    { name: "Vindicators", description: "Tank combat action game", year: "1988", slug: "vindicators" },
+    { name: "Volfied", description: "Puzzle game with unique mechanics", year: "1989", slug: "volfied" }
   ],
   W: [
-    { name: "Wonder Boy", description: "Platform adventure series", year: "1986" },
-    { name: "Wizard of Wor", description: "Maze shooting game", year: "1980" },
-    { name: "Warlords", description: "Castle defense game", year: "1980" },
-    { name: "Wardner", description: "Fantasy platformer", year: "1987" },
-    { name: "World Court Tennis", description: "Tennis sports game", year: "1988" },
-    { name: "Wild Western", description: "Western-themed shooter", year: "1982" },
-    { name: "Wrecking Crew", description: "Demolition game with unique controls", year: "1985" }
+    { name: "Wonder Boy", description: "Platform adventure series", year: "1986", slug: "wonder-boy" },
+    { name: "Wizard of Wor", description: "Maze shooting game", year: "1980", slug: "wizard-of-wor" },
+    { name: "Warlords", description: "Castle defense game", year: "1980", slug: "warlords" },
+    { name: "Wardner", description: "Fantasy platformer", year: "1987", slug: "wardner" },
+    { name: "World Court Tennis", description: "Tennis sports game", year: "1988", slug: "world-court-tennis" },
+    { name: "Wild Western", description: "Western-themed shooter", year: "1982", slug: "wild-western" },
+    { name: "Wrecking Crew", description: "Demolition game with unique controls", year: "1985", slug: "wrecking-crew" }
   ],
   X: [
-    { name: "Xevious", description: "Vertical scrolling shooter", year: "1982" },
-    { name: "X Multiply", description: "Biological themed shooter", year: "1989" },
-    { name: "Xenophobe", description: "Alien fighting platform game", year: "1987" },
-    { name: "XYBots", description: "3D maze shooter", year: "1987" },
-    { name: "X-Men", description: "Side-scrolling beat 'em up with Marvel characters", year: "1992" }
+    { name: "Xevious", description: "Vertical scrolling shooter", year: "1982", slug: "xevious" },
+    { name: "X Multiply", description: "Biological themed shooter", year: "1989", slug: "x-multiply" },
+    { name: "Xenophobe", description: "Alien fighting platform game", year: "1987", slug: "xenophobe" },
+    { name: "XYBots", description: "3D maze shooter", year: "1987", slug: "xybots" },
+    { name: "X-Men", description: "Side-scrolling beat 'em up with Marvel characters", year: "1992", slug: "x-men" }
   ],
   Y: [
-    { name: "Yie Ar Kung-Fu", description: "Martial arts fighting game", year: "1985" },
-    { name: "Youkai Douchuuki", description: "Japanese mythology action", year: "1987" },
-    { name: "Yoshi", description: "Puzzle game with Mario characters", year: "1991" },
-    { name: "Yume Kōjō: Doki Doki Panic", description: "Platform game with unique mechanics", year: "1987" }
+    { name: "Yie Ar Kung-Fu", description: "Martial arts fighting game", year: "1985", slug: "yie-ar-kung-fu" },
+    { name: "Youkai Douchuuki", description: "Japanese mythology action", year: "1987", slug: "youkai-douchuuki" },
+    { name: "Yoshi", description: "Puzzle game with Mario characters", year: "1991", slug: "yoshi" },
+    { name: "Yume Kōjō: Doki Doki Panic", description: "Platform game with unique mechanics", year: "1987", slug: "yume-kojo-doki-doki-panic" }
   ],
   Z: [
-    { name: "Zaxxon", description: "Isometric space shooter", year: "1982" },
-    { name: "Zookeeper", description: "Platform game with animals", year: "1982" },
-    { name: "Zig Zag", description: "Maze navigation game", year: "1982" },
-    { name: "Zero Wing", description: "Horizontal space shooter", year: "1989" },
-    { name: "Zombie Raid", description: "Light gun zombie shooter", year: "1995" }
+    { name: "Zaxxon", description: "Isometric space shooter", year: "1982", slug: "zaxxon" },
+    { name: "Zookeeper", description: "Platform game with animals", year: "1982", slug: "zookeeper" },
+    { name: "Zig Zag", description: "Maze navigation game", year: "1982", slug: "zig-zag" },
+    { name: "Zero Wing", description: "Horizontal space shooter", year: "1989", slug: "zero-wing" },
+    { name: "Zombie Raid", description: "Light gun zombie shooter", year: "1995", slug: "zombie-raid" }
   ]
 }

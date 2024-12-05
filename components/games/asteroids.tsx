@@ -287,7 +287,7 @@ interface Bullet {
   lifespan: number
 }
 
-function AsteroidsGame() {
+const AsteroidsGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const shipRef = useRef<Ship | null>(null)
@@ -299,7 +299,6 @@ function AsteroidsGame() {
   const [gameState, setGameState] = useState<'start' | 'playing' | 'gameover'>('start')
   const [highScore, setHighScore] = useState(0)
   const [level, setLevel] = useState(1)
-  const [isMuted, setIsMuted] = useState(false)
   const pathname = usePathname()
 
   const handleShipCollision = () => {
@@ -401,59 +400,6 @@ function AsteroidsGame() {
       asteroidsRef.current.push(...newAsteroids)
     }
   }
-
-  const toggleMute = () => {
-    if (!soundManagerRef.current) return
-    const newMutedState = soundManagerRef.current.toggleMute()
-    setIsMuted(newMutedState)
-    
-    // Stop all music when muted, otherwise restart appropriate music based on game state
-    if (newMutedState) {
-      soundManagerRef.current.stopAllSounds()
-    } else if (gameState === 'playing') {
-      soundManagerRef.current.startBackgroundMusic()
-    }
-  }
-
-  // Initialize sound manager
-  useEffect(() => {
-    soundManagerRef.current = new SoundManager()
-
-    return () => {
-      soundManagerRef.current?.stopAllSounds()
-    }
-  }, [])
-
-  // Watch for pathname changes to stop sounds
-  useEffect(() => {
-    return () => {
-      soundManagerRef.current?.stopAllSounds()
-    }
-  }, [pathname])
-
-  // Handle game state changes
-  useEffect(() => {
-    if (!soundManagerRef.current) return
-
-    if (gameState === 'playing') {
-      soundManagerRef.current.startBackgroundMusic()
-    } else {
-      soundManagerRef.current.stopAllSounds()
-    }
-  }, [gameState])
-
-  useEffect(() => {
-    if (isMuted) {
-      soundManagerRef.current?.stopAllSounds();
-    }
-  }, [isMuted]);
-
-  useEffect(() => {
-    return () => {
-      // Cleanup sounds when component unmounts
-      soundManagerRef.current?.stopAllSounds();
-    };
-  }, []);
 
   const renderHUD = useCallback((ctx: CanvasRenderingContext2D) => {
     if (!shipRef.current) return
@@ -623,39 +569,42 @@ function AsteroidsGame() {
     }
   }, [gameState, renderHUD])
 
-  return (
-    <div className="relative w-full h-full flex flex-col">
-      {/* Game Header */}
-      <div className="flex justify-between items-center p-2 z-10">
-        {/* Score and High Score */}
-        <div className="flex flex-col">
-          <div className="text-sm">Score: {score}</div>
-          <div className="text-sm">High Score: {highScore}</div>
-        </div>
-        
-        {/* Mute Button */}
-        <div 
-          className="cursor-pointer p-1"
-          onClick={() => {
-            setIsMuted(!isMuted)
-            soundManagerRef.current?.toggleMute()
-          }}
-        >
-          {isMuted ? '🔇' : '🔊'}
-        </div>
-      </div>
+  // Initialize sound manager
+  useEffect(() => {
+    soundManagerRef.current = new SoundManager()
 
-      {/* Rest of the game remains the same */}
-      <div ref={containerRef} className="flex-grow relative">
-        <canvas 
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full"
-          style={{ backgroundColor: 'black' }}
-        />
-        {/* ... other game elements ... */}
-      </div>
+    return () => {
+      soundManagerRef.current?.stopAllSounds()
+    }
+  }, [])
+
+  // Watch for pathname changes to stop sounds
+  useEffect(() => {
+    return () => {
+      soundManagerRef.current?.stopAllSounds()
+    }
+  }, [pathname])
+
+  // Handle game state changes
+  useEffect(() => {
+    if (!soundManagerRef.current) return
+
+    if (gameState === 'playing') {
+      soundManagerRef.current.startBackgroundMusic()
+    } else {
+      soundManagerRef.current.stopAllSounds()
+    }
+  }, [gameState])
+
+  return (
+    <div ref={containerRef} className="w-full h-full flex flex-col items-center justify-center bg-black text-white relative">
+      <canvas 
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ backgroundColor: 'black' }}
+      />
     </div>
   )
 }
 
-module.exports = AsteroidsGame;
+export default AsteroidsGame;

@@ -1,15 +1,16 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { SearchBar } from "@/components/ui/search-bar"
 import { Button } from "@/components/ui/button"
 import { gamesByLetter, type Game } from "@/lib/games"
-import { useState, useEffect } from "react"
+import { useState, useEffect, type ChangeEvent } from "react"
 import { usePathname } from "next/navigation"
 
 interface GameLayoutProps {
-  game: Game
   children?: React.ReactNode
+  game: Game
 }
 
 function getSimilarGames(currentGame: Game): Game[] {
@@ -20,11 +21,15 @@ function getSimilarGames(currentGame: Game): Game[] {
   return sameLetterGames.slice(0, 5)
 }
 
-const GameLayout = ({ children, game }: GameLayoutProps) => {
+export function GameLayout({ children, game }: GameLayoutProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const similarGames = getSimilarGames(game)
   const pathname = usePathname()
   const [soundManager, setSoundManager] = useState<any>(null)
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value)
+  }
 
   // Initialize sound manager
   useEffect(() => {
@@ -63,6 +68,11 @@ const GameLayout = ({ children, game }: GameLayoutProps) => {
     }
   }, [pathname, soundManager])
 
+  // Reset search when navigating to a new game
+  useEffect(() => {
+    setSearchQuery("")
+  }, [pathname])
+
   return (
     <div className="fixed inset-0 flex bg-background my-20">
       {/* Left Sidebar */}
@@ -71,7 +81,7 @@ const GameLayout = ({ children, game }: GameLayoutProps) => {
           <h2 className="text-lg font-semibold">Search Games</h2>
           <SearchBar 
             value={searchQuery}
-            onChange={setSearchQuery}
+            onChange={handleSearchChange}
             placeholder="Search games..."
           />
           
@@ -125,5 +135,3 @@ const GameLayout = ({ children, game }: GameLayoutProps) => {
     </div>
   )
 }
-
-export { GameLayout }

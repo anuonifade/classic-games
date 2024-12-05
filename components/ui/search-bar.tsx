@@ -6,16 +6,17 @@ import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { Input } from "./input"
 
-interface SearchBarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SearchBarProps {
+  className?: string
   onSearch?: (query: string) => void
   value?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
 }
 
-const SearchBar = React.forwardRef<HTMLDivElement, SearchBarProps>(
+const SearchBar = React.forwardRef<HTMLFormElement, SearchBarProps>(
   ({ className, onSearch, value, onChange, placeholder = "Search for a game...", ...props }, ref) => {
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       onSearch?.(value || "")
     }
@@ -28,7 +29,6 @@ const SearchBar = React.forwardRef<HTMLDivElement, SearchBarProps>(
           "group relative flex w-full max-w-4xl items-center gap-2 rounded-xl border bg-background/50 p-1.5 backdrop-blur-sm transition-all duration-300 focus-within:bg-background/80 focus-within:shadow-lg hover:bg-background/60",
           className
         )}
-        {...props}
       >
         <Search className="ml-3 h-5 w-5 text-muted-foreground/60 transition-colors duration-200 group-hover:text-muted-foreground/80 group-focus-within:text-foreground" />
         <Input
@@ -49,6 +49,7 @@ const SearchBar = React.forwardRef<HTMLDivElement, SearchBarProps>(
     )
   }
 )
+
 SearchBar.displayName = "SearchBar"
 
 export { SearchBar }

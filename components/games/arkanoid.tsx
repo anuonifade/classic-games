@@ -167,7 +167,7 @@ class Brick {
   }
 }
 
-function ArkanoidGame() {
+const ArkanoidGame: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const paddleRef = useRef<Paddle | null>(null)
@@ -447,4 +447,4 @@ function ArkanoidGame() {
   )
 }
 
-module.exports = ArkanoidGame;
+export default ArkanoidGame;
